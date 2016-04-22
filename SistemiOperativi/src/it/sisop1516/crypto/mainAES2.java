@@ -13,7 +13,7 @@ public class mainAES2 {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		System.out.println("Scegli quanti thread usare");
-		int numThread=900;
+		int numThread=4;
 		int infBound=0; 
 		int offset= (Integer.MAX_VALUE/numThread);
 		int keyLength=16;
@@ -43,13 +43,13 @@ public class mainAES2 {
 		{
 			for(Thread t:list)
 			{	
-				if(t.isInterrupted() && ((DecryptAES2) t).getBool())
+				if(t.isInterrupted() && DecryptAES2.getBool() && ((DecryptAES2) t).getDone())
 				{	
-					for(Thread th:list){th.wait();}
+//					for(Thread th:list){th.wait();}
 					System.out.println("Chiave trovata: "+((DecryptAES2) t).getKey());
 					currentTime=System.nanoTime()-currentTime;
 					System.out.println("Calcolato dopo: "+TimeUnit.SECONDS.convert(currentTime,TimeUnit.NANOSECONDS)+" secondi");
-					Thread.sleep(10000000);
+//					Thread.sleep(10000000);
 					break ciclo;
 				}
 			}

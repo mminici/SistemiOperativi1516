@@ -3,12 +3,15 @@ package it.sisop1516.crypto;
 public class DecryptAES2 extends Thread {
 		private int infBound,supBound,keyLength;
 		private String currentKey;
-		private boolean found=false;
+		private static boolean found=false;
+		private boolean done=false;
 		private byte[] encrypted,output;
 		private byte[] goal;
 		private byte[] goal2;
 		
-		public boolean getBool(){return found;}
+		public static boolean getBool(){return found;}
+		
+		public boolean getDone(){return done;}
 		
 		public String getKey(){return currentKey;}
 		
@@ -24,6 +27,7 @@ public class DecryptAES2 extends Thread {
 			this.goal2=textToDecrypt.getBytes();
 			this.encrypted=encrypted;
 			this.output=output;
+			this.setName("from "+infBound+" to "+supBound);
 		}
 		
 		public void run()
@@ -44,9 +48,9 @@ public class DecryptAES2 extends Thread {
 				currentKey="0"+currentKey;
 			}
 			//key has been generated
-			System.out.println();
-			System.out.println("checking... "+currentKey+" key");
-			System.out.println();
+//			System.out.println();
+//			System.out.println("checking... "+currentKey+" key");
+//			System.out.println();
 			try {
 				CryptoUtils.decryptSISOP(currentKey, encrypted, output);
 			} catch (CryptoException e) {/* possible comments here */ }
@@ -60,9 +64,10 @@ public class DecryptAES2 extends Thread {
 					if(output[l]!=goal2[l]){continue ciclo;}
 				}}
 			else{continue ciclo;}
-			found=true; this.interrupt();
+			found=true; done=true; this.interrupt();
 			
 			}
+		System.out.println("Il thread #"+this.getId()+"/"+this.getName()+" ha terminato le sue operazioni");
 		}
 		
 }

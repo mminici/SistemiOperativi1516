@@ -58,7 +58,7 @@ public class CryptoUtils {
             output=cipher.doFinal(input);
             }catch(NoSuchPaddingException | NoSuchAlgorithmException
                 | InvalidKeyException | BadPaddingException
-                | IllegalBlockSizeException ex){throw new CryptoException("Error encrypting/decrypting file", ex);}
+                | IllegalBlockSizeException ex){/*throw new CryptoException("Error encrypting/decrypting file", ex);*/}
 	}
 	
 	private static void doCrypto(int cipherMode, byte[] b, File inputFile, File outputFile) throws CryptoException {
