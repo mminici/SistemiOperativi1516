@@ -1,7 +1,15 @@
 package it.sisop1516.semafori.filosofi;
 
 public class SmartFilosofo extends Filosofo {
+	
+	/*
+	 * Queste variabili servono per adottare una strategia risolutiva
+	 * al problema della starvation.
+	 */
 	private boolean soddisfatto=false;
+	private int contatore=0;
+	private static final int MAX_PASTI=3;
+	
 	public SmartFilosofo(){
 		super();
 	}
@@ -17,7 +25,11 @@ public class SmartFilosofo extends Filosofo {
 				if(soddisfatto)
 				{
 					Thread.sleep(1000);
+					soddisfatto=false;
+					contatore=0;
 				}
+				else
+				{
 				//Il filosofo ha fame e prova ad acquisire le bacchette necessarie
 				boolean primaBacchetta=bacchetta[ID].tryAcquire();
 				boolean secondaBacchetta=bacchetta[(ID+1)%NUM_FILOSOFI].tryAcquire();
@@ -33,9 +45,12 @@ public class SmartFilosofo extends Filosofo {
 					secondaBacchetta=bacchetta[(ID+1)%NUM_FILOSOFI].tryAcquire();
 				}
 				mangia();
+				contatore++;
 				System.out.println("Filosofo #"+ID+" ha mangiato");
 				bacchetta[ID].release();
 				bacchetta[(ID+1)%NUM_FILOSOFI].release();
+				}
+				if(contatore==MAX_PASTI){soddisfatto=true;}
 			}catch(InterruptedException e){}
 		}	
 	}
