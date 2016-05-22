@@ -33,14 +33,15 @@ public class LaghettoSem extends Laghetto {
 			}
 			else
 			{
-			occupato.acquire();
 			pesciPescabili.acquire();
+			occupato.acquire();
+//			pesciPescabili.acquire();
 			mutex.acquire();	
 			}
-			System.out.println("Persona tipo#"+t+"sta iniziando ad operare");
+			System.out.println("Persona tipo #"+t+" sta iniziando ad operare");
 			numPescatori++;
 			mutex.release();
-		} catch (InterruptedException e) {}
+			} catch (InterruptedException e) {}
 		}
 		else
 		{
@@ -52,14 +53,15 @@ public class LaghettoSem extends Laghetto {
 				}
 				else
 				{
-				occupato.acquire();
 				pesciInseribili.acquire(10);
+				occupato.acquire();
+//				pesciInseribili.acquire(10);
 				mutex.acquire();	
 				}
-				System.out.println("Persona tipo#"+t+"sta iniziando ad operare");
+				System.out.println("Persona tipo #"+t+" sta iniziando ad operare");
 				numAddetti++;
 				mutex.release();
-			} catch (InterruptedException e) {}
+				} catch (InterruptedException e) {}
 		}
 		
 	}
@@ -70,7 +72,7 @@ public class LaghettoSem extends Laghetto {
 		{
 		try {
 			mutex.acquire();
-			System.out.println("Persona tipo#"+t+"sta finendo di operare");
+			System.out.println("Persona tipo #"+t+" sta finendo di operare");
 			numPesci--;
 			numPescatori--;
 			pesciInseribili.release();
@@ -82,7 +84,7 @@ public class LaghettoSem extends Laghetto {
 		{
 			try {
 				mutex.acquire();
-				System.out.println("Persona tipo#"+t+"sta finendo di operare");
+				System.out.println("Persona tipo #"+t+" sta finendo di operare");
 				numPesci+=10;
 				numAddetti--;
 				pesciPescabili.release(10);

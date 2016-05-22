@@ -15,6 +15,7 @@ public class Addetto extends Persona {
 	public void run(){
 		while(true)
 		{	
+			System.out.println("SONO NEL WHILE-TRUE-add"+" numero pesci: "+l.getNum());
 			try{
 			l.inizia(1);
 			popola();

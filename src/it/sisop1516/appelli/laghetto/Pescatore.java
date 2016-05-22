@@ -15,7 +15,8 @@ public class Pescatore extends Persona {
 		@Override
 		public void run(){
 			while(true)
-			{
+			{	
+				System.out.println("SONO NEL WHILE-TRUE-pesc"+" numero pesci: "+l.getNum());
 				try {
 					l.inizia(0);
 					pesca();

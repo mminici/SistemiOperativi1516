@@ -90,7 +90,7 @@ public class LaghettoLC extends Laghetto {
 	
 	public static void main(String[] args) throws InterruptedException
 	{
-		System.out.println("Soluzione LC	");
+		System.out.println("Soluzione LC");
 		Thread.sleep(1000);
 		Laghetto l=new LaghettoLC(50,200,100);
 		l.test(40, 5);
