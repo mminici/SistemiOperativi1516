@@ -4,7 +4,7 @@ package it.sisop1516.appelli.laghetto;
 public class Pescatore extends Persona {
 		public Pescatore(int min,int max,int p,Laghetto l)
 		{	
-			this.l=new LaghettoSem(l.getMin(),l.getMax(),l.getNum());
+			this.l=l;
 			minTempo=min;
 			maxTempo=max;
 			pausa=p;

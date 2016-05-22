@@ -75,6 +75,7 @@ public class LaghettoSem extends Laghetto {
 			numPescatori--;
 			pesciInseribili.release();
 			if(numPescatori==0){occupato.release();}
+			mutex.release();
 		} catch (InterruptedException e) {}
 		}
 		else
@@ -86,13 +87,16 @@ public class LaghettoSem extends Laghetto {
 				numAddetti--;
 				pesciPescabili.release(10);
 				if(numAddetti==0){occupato.release();}
+				mutex.release();
 			} catch (InterruptedException e) {}
 		}
 		
 	}
 	
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) throws InterruptedException
+	{	
+		System.out.println("Soluzione Sem");
+		Thread.sleep(1000);
 		Laghetto l=new LaghettoSem(50,200,100);
 		l.test(40, 5);
 	}
