@@ -5,8 +5,8 @@ import java.util.concurrent.Semaphore;
 public class LaghettoSem extends Laghetto {
 	
 	private Semaphore mutex=new Semaphore(1);
-	private Semaphore pesciPescabili=new Semaphore(numPesci-minPesci);
-	private Semaphore pesciInseribili=new Semaphore(maxPesci-numPesci);
+	private Semaphore pesciPescabili;
+	private Semaphore pesciInseribili;
 	private Semaphore occupato=new Semaphore(0);
 	
 	public LaghettoSem(int minPesci,int maxPesci,int numPesci)
@@ -15,6 +15,8 @@ public class LaghettoSem extends Laghetto {
 		this.minPesci=minPesci;
 		this.maxPesci=maxPesci;
 		this.numPesci=numPesci;
+		this.pesciPescabili=new Semaphore(numPesci-minPesci);
+		this.pesciInseribili=new Semaphore(maxPesci-numPesci);
 		numAddetti=0;
 		numPescatori=0;
 	}
