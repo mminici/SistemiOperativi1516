@@ -74,6 +74,7 @@ public class PiscinaSem extends Piscina {
 			return corsiaScelta;
 		}
 		else{
+			mutex.release();
 			//throw new IllegalStateException();
 			return -1;
 		}
