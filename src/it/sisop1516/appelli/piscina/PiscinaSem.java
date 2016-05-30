@@ -36,7 +36,7 @@ public class PiscinaSem extends Piscina {
 			e.printStackTrace();
 		}
 		tempoCorrente=(int) TimeUnit.MINUTES.convert(System.currentTimeMillis()-tempoIniziale,TimeUnit.MILLISECONDS);
-		int tempoAllaChiusura=ORARIO_CHIUSURA[mod]-tempoCorrente;
+		int tempoAllaChiusura=(ORARIO_CHIUSURA[mod]*60)-tempoCorrente;
 		mutex.release();
 		return tempoAllaChiusura;
 	}
