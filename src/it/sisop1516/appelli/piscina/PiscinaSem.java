@@ -2,6 +2,7 @@ package it.sisop1516.appelli.piscina;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class PiscinaSem extends Piscina {
 	
@@ -34,7 +35,7 @@ public class PiscinaSem extends Piscina {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		tempoCorrente=(int)(System.currentTimeMillis()-tempoIniziale);
+		tempoCorrente=(int) TimeUnit.MINUTES.convert(System.currentTimeMillis()-tempoIniziale,TimeUnit.MILLISECONDS);
 		int tempoAllaChiusura=ORARIO_CHIUSURA[mod]-tempoCorrente;
 		mutex.release();
 		return tempoAllaChiusura;
