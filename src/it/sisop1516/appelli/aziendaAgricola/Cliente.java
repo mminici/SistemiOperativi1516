@@ -29,6 +29,9 @@ public class Cliente extends Thread {
 				sacchi--;
 			}
 			azienda.numClienti--;
-			if(azienda.numClienti==0){azienda.finito.release();}
+			if(azienda.numClienti==0)
+			{
+				azienda.fineGiornata=true;
+			}
 		}
 }

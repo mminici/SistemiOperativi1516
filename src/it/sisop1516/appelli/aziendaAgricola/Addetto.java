@@ -11,12 +11,15 @@ public class Addetto extends Thread {
 		}
 		
 		public void run(){
-			azienda.ricarica();
-			try {
-				TimeUnit.MINUTES.sleep(tempoRicarica);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while(!azienda.fineGiornata)
+			{	
+				azienda.ricarica();
+				try {
+					TimeUnit.MINUTES.sleep(tempoRicarica);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 }

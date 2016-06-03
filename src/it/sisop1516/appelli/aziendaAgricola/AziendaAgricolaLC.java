@@ -71,7 +71,8 @@ public class AziendaAgricolaLC extends AziendaAgricola {
 		{
 			magazzino.lock();
 			while(!mioTurno(ADDETTO,MAGAZZINO))
-			{
+			{	
+				if(fineGiornata){return;}
 				aspettaMagazzino.await();
 			}
 			numSacchi=NUM_INIZIALE_SACCHI;

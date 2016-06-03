@@ -1,6 +1,5 @@
 package it.sisop1516.appelli.aziendaAgricola;
 
-import java.util.concurrent.Semaphore;
 
 public abstract class AziendaAgricola {
 		protected static int NUM_INIZIALE_SACCHI=200; 
@@ -8,7 +7,7 @@ public abstract class AziendaAgricola {
 		protected int numSacchi;
 		protected int incasso;
 		protected int numClienti;
-		protected Semaphore finito=new Semaphore(0);
+		protected boolean fineGiornata=false;
 		
 		protected abstract void paga(int numSacchi);
 		
@@ -26,7 +25,5 @@ public abstract class AziendaAgricola {
 			this.numClienti=numClienti;
 			addetto.start();
 			for(Thread t:clienti){t.start();}
-			finito.acquire();
-			System.out.println("L'incasso di giornata è stato di "+incasso+" euro");
 		}
 }
